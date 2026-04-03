@@ -127,6 +127,65 @@ const PI = {
 };
 const SALAH = ["Fajr", "Dhuhr", "Asr", "Maghrib", "Isha"];
 
+// ─── CURATED AYAT PER PRAYER ──────────────────────────────────────────────────
+// Each entry: { id: surahId, from: startAya, to: endAya, reason }
+const PRAYER_RECS = {
+  Fajr: [
+    { id: 36, from: 1, to: 83,  reason: "يس — قلب القرآن · Ya-Sin, heart of the Quran" },
+    { id: 32, from: 1, to: 30,  reason: "السجدة — سنّة الفجر · As-Sajdah, Fajr Sunnah" },
+    { id: 67, from: 1, to: 30,  reason: "الملك — حفظ يومي · Al-Mulk, daily protection" },
+    { id: 50, from: 1, to: 45,  reason: "ق — كان النبي ﷺ يقرأها في الفجر · Sunnah of Fajr" },
+    { id: 73, from: 1, to: 20,  reason: "المزمل — صاحب القيام · Al-Muzzammil" },
+    { id: 56, from: 1, to: 96,  reason: "الواقعة — بركة الرزق · Al-Waqi'ah" },
+    { id: 55, from: 1, to: 78,  reason: "الرحمن — شكر نعم الله · Ar-Rahman" },
+  ],
+  Dhuhr: [
+    { id: 87,  from: 1, to: 19, reason: "الأعلى — سنّة الظهر · Al-A'la, Dhuhr Sunnah" },
+    { id: 88,  from: 1, to: 26, reason: "الغاشية — سنّة الظهر · Al-Ghashiyah, Dhuhr Sunnah" },
+    { id: 112, from: 1, to: 4,  reason: "الإخلاص — تعدل ثلث القرآن · Al-Ikhlas" },
+    { id: 109, from: 1, to: 6,  reason: "الكافرون — براءة من الشرك · Al-Kafirun" },
+    { id: 94,  from: 1, to: 8,  reason: "الشرح — مع العسر يسر · Ash-Sharh" },
+    { id: 95,  from: 1, to: 8,  reason: "التين — خلق الإنسان · At-Tin" },
+    { id: 97,  from: 1, to: 5,  reason: "القدر — ليلة خير من ألف شهر · Al-Qadr" },
+  ],
+  Asr: [
+    { id: 103, from: 1, to: 3,  reason: "العصر — مفتاح الفلاح · Al-Asr, key to success" },
+    { id: 112, from: 1, to: 4,  reason: "الإخلاص — التوحيد الخالص · Al-Ikhlas" },
+    { id: 114, from: 1, to: 6,  reason: "الناس — حصن من الوسواس · An-Nas" },
+    { id: 113, from: 1, to: 5,  reason: "الفلق — حصن من الأذى · Al-Falaq" },
+    { id: 108, from: 1, to: 3,  reason: "الكوثر — نعمة الله العظيمة · Al-Kawthar" },
+    { id: 99,  from: 1, to: 8,  reason: "الزلزلة — الحساب الدقيق · Az-Zalzalah" },
+    { id: 107, from: 1, to: 7,  reason: "الماعون — الصلاة والناس · Al-Ma'un" },
+  ],
+  Maghrib: [
+    { id: 87,  from: 1, to: 19, reason: "الأعلى — سنّة المغرب · Al-A'la, Maghrib Sunnah" },
+    { id: 88,  from: 1, to: 26, reason: "الغاشية — سنّة المغرب · Al-Ghashiyah, Maghrib Sunnah" },
+    { id: 112, from: 1, to: 4,  reason: "الإخلاص — تُقرأ ثلاث مرات · Al-Ikhlas ×3" },
+    { id: 113, from: 1, to: 5,  reason: "الفلق — حصن المساء · Al-Falaq" },
+    { id: 114, from: 1, to: 6,  reason: "الناس — حصن المساء · An-Nas" },
+    { id: 106, from: 1, to: 4,  reason: "قريش — شكر النعمة · Quraysh" },
+    { id: 110, from: 1, to: 3,  reason: "النصر — الشكر عند الفتح · An-Nasr" },
+  ],
+  Isha: [
+    { id: 109, from: 1, to: 6,  reason: "الكافرون — سنّة قبل النوم · Al-Kafirun" },
+    { id: 112, from: 1, to: 4,  reason: "الإخلاص — ورد المساء · Al-Ikhlas" },
+    { id: 113, from: 1, to: 5,  reason: "الفلق — حماية النوم · Al-Falaq" },
+    { id: 114, from: 1, to: 6,  reason: "الناس — حماية النوم · An-Nas" },
+    { id: 67,  from: 1, to: 30, reason: "الملك — حفظ من عذاب القبر · Al-Mulk" },
+    { id: 110, from: 1, to: 3,  reason: "النصر — ختام اليوم · An-Nasr" },
+    { id: 97,  from: 1, to: 5,  reason: "القدر — ليلة القدر · Al-Qadr" },
+  ],
+  Tahajjud: [
+    { id: 76,  from: 1, to: 31, reason: "الإنسان — ثواب صلاة الليل · Al-Insan, reward of night prayer" },
+    { id: 73,  from: 1, to: 20, reason: "المزمل — أهل القيام · Al-Muzzammil, the night vigil" },
+    { id: 32,  from: 1, to: 30, reason: "السجدة — سنّة التهجد · As-Sajdah" },
+    { id: 67,  from: 1, to: 30, reason: "الملك — أمان الليل · Al-Mulk" },
+    { id: 55,  from: 1, to: 78, reason: "الرحمن — مناجاة الله · Ar-Rahman" },
+    { id: 36,  from: 1, to: 83, reason: "يس — قلب القرآن · Ya-Sin" },
+    { id: 56,  from: 1, to: 96, reason: "الواقعة — بركة الرزق · Al-Waqi'ah" },
+  ],
+};
+
 // ─── HELPERS ──────────────────────────────────────────────────────────────────
 async function fetchByCoords(lat, lon) {
   const d = new Date();
@@ -179,11 +238,11 @@ function fmt12(t) {
   const [h, m] = t.split(":").map(Number);
   return `${h%12||12}:${String(m).padStart(2,"0")} ${h>=12?"PM":"AM"}`;
 }
-function pool(pName) {
-  const rec = PI[pName]?.rec || "medium";
-  if (rec === "long")   return SURAHS.filter(s => s.type === "long"   || s.type === "medium");
-  if (rec === "medium") return SURAHS.filter(s => s.type === "medium" || s.type === "short");
-  return SURAHS.filter(s => s.type === "short");
+function getActivePrayer(timings) {
+  const h = new Date().getHours();
+  if (h >= 1 && h < 5) return "Tahajjud";
+  if (!timings) return "Isha";
+  return getNext(timings).name;
 }
 
 // ─── ISOLATED COUNTDOWN — has its own state, never re-renders parent ──────────
@@ -398,8 +457,8 @@ export default function App() {
     return () => clearInterval(id);
   }, [notifOn, lang]);
 
-  // Initial shuffle
-  useEffect(() => { setTimeout(doShuffle, 400); }, []);
+  // Initial shuffle — re-run when timings load so prayer detection is accurate
+  useEffect(() => { setTimeout(doShuffle, 400); }, [timings]);
 
   // Fetch ayat
   useEffect(() => {
@@ -412,13 +471,15 @@ export default function App() {
   }, [reading?.id, suggestion?.id]);
 
   function doShuffle(pName) {
-    const p = pName || curPrayer || "Isha";
-    const available = pool(p).filter(s => !lastPicks.includes(s.id));
-    const src = available.length > 0 ? available : pool(p);
-    const pick = src[Math.floor(Math.random() * src.length)];
+    const prayer = pName || getActivePrayer(timings);
+    const recs = PRAYER_RECS[prayer] || PRAYER_RECS.Isha;
+    const available = recs.filter(r => !lastPicks.includes(r.id));
+    const src = available.length > 0 ? available : recs;
+    const rec = src[Math.floor(Math.random() * src.length)];
+    const surahMeta = SURAHS.find(s => s.id === rec.id);
     setShuffleAnim(true); setTimeout(() => setShuffleAnim(false), 350);
-    setSuggestion(pick);
-    setLastPicks(prev => [...prev.slice(-6), pick.id]);
+    setSuggestion({ ...surahMeta, from: rec.from, to: rec.to, reason: rec.reason, prayerName: prayer });
+    setLastPicks(prev => [...prev.slice(-6), rec.id]);
   }
 
   const toggleFav = (s) => {
@@ -488,7 +549,6 @@ export default function App() {
   const HomePage = () => {
     const h = new Date().getHours();
     const greet = h < 12 ? t("صباح الخير ☀️", "Good Morning ☀️") : h < 18 ? t("مساء الخير 🌤", "Good Afternoon 🌤") : t("مساء النور 🌙", "Good Evening 🌙");
-    const ayat = suggestion ? ayatCache[suggestion.id] : null;
     return (
       <div>
         <div style={{ marginBottom: 20 }}>
@@ -527,37 +587,78 @@ export default function App() {
           ))}
         </div>
 
-        {/* Suggested surah */}
-        {suggestion && (
-          <div style={{ ...card, opacity: shuffleAnim ? 0.6 : 1, transition: "opacity 0.3s" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 14 }}>
-              <div>
-                <div style={{ fontSize: 10, color: C.sub, fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase" }}>{t("مقترح لصلاتك", "Suggested for you")}</div>
-                <div style={{ fontSize: 22, fontWeight: 700, fontFamily: "'Amiri', serif", color: C.text, marginTop: 2 }}>{suggestion.name}</div>
-                <div style={{ fontSize: 12, color: C.sub }}>{suggestion.nameEn} · {suggestion.verses} {t("آية", "verses")}</div>
+        {/* ── Today's Recitation Card ───────────────────────────────────── */}
+        {suggestion && (() => {
+          const ayat = ayatCache[suggestion.id];
+          const pInfo = PI[suggestion.prayerName] || PI.Isha;
+          const pLabel = suggestion.prayerName === "Tahajjud"
+            ? (lang === "ar" ? "🌙 التهجد" : "🌙 Tahajjud")
+            : `${pInfo.icon} ${lang === "ar" ? pInfo.ar : suggestion.prayerName}`;
+          const isShort = (suggestion.to - suggestion.from + 1) <= 15;
+          const MAX_SHOW = isShort ? 999 : 8;
+          const sliced = ayat ? ayat.slice(suggestion.from - 1, suggestion.to) : null;
+          const displayAyat = sliced ? sliced.slice(0, MAX_SHOW) : null;
+          const hasMore = sliced && sliced.length > MAX_SHOW;
+          return (
+            <div style={{ ...card, opacity: shuffleAnim ? 0.55 : 1, transition: "opacity 0.3s", borderColor: `${pInfo.color}40` }}>
+
+              {/* Header row */}
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+                <span style={{ background: `${pInfo.color}22`, color: pInfo.color, padding: "4px 12px", borderRadius: 20, fontSize: 12, fontWeight: 800 }}>{pLabel}</span>
+                <span style={{ flex: 1, fontSize: 11, color: C.sub, direction: "rtl", textAlign: "right" }}>{suggestion.reason}</span>
+              </div>
+
+              {/* Surah title */}
+              <div style={{ textAlign: "center", marginBottom: 14 }}>
+                <div style={{ fontSize: 30, fontFamily: "'Amiri', serif", fontWeight: 700, color: C.text }}>{suggestion.name}</div>
+                <div style={{ fontSize: 13, color: C.sub }}>{suggestion.nameEn} · {t("الآيات", "Ayat")} {suggestion.from}–{suggestion.to}</div>
+              </div>
+
+              {/* Bismillah */}
+              {suggestion.id !== 9 && (
+                <div style={{ textAlign: "center", fontFamily: "'Amiri', serif", fontSize: 20, color: "#F59E0B", marginBottom: 14 }}>
+                  بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+                </div>
+              )}
+
+              {/* Ayat */}
+              <div style={{ background: dark ? "#0F172A" : "#F0F4FF", borderRadius: 12, padding: "16px", marginBottom: 14, border: `1px solid ${C.border}` }}>
+                {!displayAyat ? (
+                  <div style={{ textAlign: "center", padding: "24px 0", color: C.sub, fontSize: 13 }}>
+                    {loadingAyat ? (lang === "ar" ? "⏳ جارٍ التحميل…" : "⏳ Loading ayat…") : ayatErr ? "⚠️ " + t("فشل التحميل، اضغط تحديث", "Failed to load — try again") : "…"}
+                  </div>
+                ) : displayAyat.map((a, i) => {
+                  const ayaNum = suggestion.from + i;
+                  return (
+                    <div key={i} style={{ paddingBottom: i < displayAyat.length - 1 ? 14 : 0, marginBottom: i < displayAyat.length - 1 ? 14 : 0, borderBottom: i < displayAyat.length - 1 ? `1px solid ${C.border}` : "none" }}>
+                      <div style={{ fontFamily: "'Amiri', serif", fontSize: 24, textAlign: "right", direction: "rtl", color: C.text, lineHeight: 2.2 }}>
+                        {a.ar} <span style={{ fontSize: 14, color: pInfo.color }}>﴿{ayaNum}﴾</span>
+                      </div>
+                      {showTrans && <div style={{ fontSize: 12, color: C.sub, lineHeight: 1.7, marginTop: 4, fontStyle: "italic" }}>{a.en}</div>}
+                    </div>
+                  );
+                })}
+                {hasMore && (
+                  <div style={{ textAlign: "center", marginTop: 10 }}>
+                    <button style={btn("ghost")} onClick={() => { setReading(suggestion); setPage("quran"); window.scrollTo(0,0); }}>
+                      {t(`+ ${sliced.length - MAX_SHOW} آية أخرى — اقرأ كاملاً`, `+ ${sliced.length - MAX_SHOW} more — Read full surah`)}
+                    </button>
+                  </div>
+                )}
+              </div>
+
+              {/* Action buttons */}
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                <button style={btn("green")} onClick={() => { markRead(suggestion); showToast({ icon: "✅", title: t("أحسنت! ما شاء الله", "Well done! Masha Allah"), msg: suggestion.name }); }}>
+                  ✅ {t("أتممت التلاوة", "Done Reading")}
+                </button>
+                <button style={btn("ghost")} onClick={() => doShuffle()}>🔄 {t("سورة أخرى", "Different Surah")}</button>
+                <button style={btn("ghost")} onClick={() => { setReading(suggestion); setPage("quran"); window.scrollTo(0,0); }}>📖 {t("اقرأ كاملاً", "Full Surah")}</button>
+                <button style={{ ...btn("ghost"), minWidth: 44 }} onClick={() => toggleFav(suggestion)}>{isFav(suggestion) ? "💛" : "🤍"}</button>
               </div>
             </div>
-
-            {/* Preview */}
-            <div style={{ background: dark ? "#0F172A" : "#F8FAFC", borderRadius: 10, padding: "14px 16px", marginBottom: 14, border: `1px solid ${C.border}`, minHeight: 70 }}>
-              {!ayat
-                ? <div style={{ color: C.sub, fontSize: 12, textAlign: "center", paddingTop: 16 }}>{loadingAyat ? t("جارٍ التحميل…", "Loading…") : ayatErr ? t("⚠️ فشل", "⚠️ Failed") : "…"}</div>
-                : ayat.slice(0, 2).map((a, i) => (
-                  <div key={i} style={{ marginBottom: 10 }}>
-                    <div style={{ fontFamily: "'Amiri', serif", fontSize: 20, textAlign: "right", direction: "rtl", color: C.text, lineHeight: 2 }}>{a.ar} <span style={{ color: accent, fontSize: 12 }}>﴿{i+1}﴾</span></div>
-                    {showTrans && <div style={{ fontSize: 11, color: C.sub, lineHeight: 1.6 }}>{a.en}</div>}
-                  </div>
-                ))}
-            </div>
-
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <button style={btn("primary")} onClick={() => { setReading(suggestion); setPage("quran"); }}>📖 {t("اقرأ", "Read")}</button>
-              <button style={btn("ghost")}   onClick={() => doShuffle()}>🔄 {t("آخر", "Shuffle")}</button>
-              <button style={btn("ghost")}   onClick={() => toggleFav(suggestion)}>{isFav(suggestion) ? "💛" : "🤍"}</button>
-              <button style={btn("ghost")}   onClick={() => markRead(suggestion)}>✅</button>
-            </div>
-          </div>
-        )}
+          );
+        })()}
 
         {/* Notification banner */}
         {!notifOn && timings && (
